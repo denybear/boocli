@@ -450,6 +450,19 @@ int midi_clock_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 		// process each track
 		for (i=0; i<NB_TRACKS; i++) {
 
+
+			/**************************************************/
+			/* automatically PLAY after recording (free mode) */
+			/**************************************************/
+			// in case record shall stop now, then start playing from now on
+			if ((track[i].status[MODE]==ON) && (track[i].status[RECORD] == PENDING_OFF)) {
+				// set to next status (ie. PENDING_ON)
+				track[i].status[PLAY] = PENDING_ON;
+				// no need to switch led on according to status, as status will turn to ON in the next few lines
+				//led (i, PLAY, track[i].status[PLAY]);
+			}
+
+
 			// check if a pending action (play, record, delete) is ready to be performed
 			// this shall be done only if MODE == OFF AND we have a new bar (that is: is_BBT = 1), or in any case if MODE == ON
 			if (is_pending_action (i)) {
@@ -573,6 +586,18 @@ int midi_clock_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 					led (i, VOLUP, ON);
 
 				}
+			}
+
+
+			/*************************************************/
+			/* automatically PLAY after recording (bar mode) */
+			/*************************************************/
+			// in case record will stop at next bar (ie. MODE == OFF), then position play as pending_on
+			if ((track[i].status[MODE]==OFF) && (track[i].status[RECORD] == PENDING_OFF)) {
+				// set to next status (ie. PENDING_ON)
+				track[i].status[PLAY] = PENDING_ON;
+				// switch led on according to status
+				led (i, PLAY, track[i].status[PLAY]);
 			}
 		}
 	}
