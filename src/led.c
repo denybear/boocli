@@ -11,6 +11,7 @@
 #include "led.h"
 #include "time.h"
 #include "utils.h"
+#include "disk.h"
 
 // function called to turn pad led on/off
 int led (int tracknum, int type, int on_off) {

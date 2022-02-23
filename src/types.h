@@ -30,15 +30,17 @@
 
 #define FIRST_ELT 0		// used for declarations and loops
 #define TIMESIGN 0
-#define PLAY 1
-#define RECORD 2
-#define MUTE 3
-#define SOLO 4
-#define VOLDOWN 5
-#define VOLUP 6
-#define MODE 7
-#define DELETE 8
-#define LAST_ELT 9		// used for declarations and loops
+#define	LOAD 1
+#define	SAVE 2
+#define PLAY 3
+#define RECORD 4
+#define MUTE 5
+#define SOLO 6
+#define VOLDOWN 7
+#define VOLUP 8
+#define MODE 9
+#define DELETE 10
+#define LAST_ELT 11		// used for declarations and loops
 
 #define LAST_BAR_ELT 8		// used for declarations and loops
 
@@ -47,6 +49,7 @@
 #define NB_SAMPLES	13230000	// 13230000 samples at 44100 Hz means 300 seconds of music, ie. 5 min loops
 
 /* time signature values */
+#define FIRST_TIMESIGN 0
 #define _4_4 0
 #define _2_2 1
 #define	_2_4 2
@@ -55,6 +58,7 @@
 #define	_9_8 5
 #define	_12_8 6
 #define	_5_4 7
+#define LAST_TIMESIGN 7
 // let's not support 3_8 nor 6_4 for now at it messes with our BBT calculations algorithm
 
 /* define status, etc */

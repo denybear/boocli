@@ -12,6 +12,7 @@
 #include "led.h"
 #include "time.h"
 #include "utils.h"
+#include "disk.h"
 
 
 
@@ -27,7 +28,8 @@ int process ( jack_nframes_t nframes, void *arg )
 	jack_nframes_t nframes_half;			// anti-crack variables
 	jack_default_audio_sample_t sample;		// anti-crack variables
 	jack_default_audio_sample_t *in, *out;
-	jack_midi_event_t *clock_event, *in_event;
+//	jack_midi_event_t *clock_event, *in_event;
+	jack_midi_event_t clock_event, in_event;
 	jack_midi_data_t buffer[5];				// midi out buffer for lighting the pad leds
 	int dest, tracknum, type, on_off;		// variables used to manage lighting of the pad leds
 
@@ -51,8 +53,8 @@ int process ( jack_nframes_t nframes, void *arg )
 	/****************************************/
 
 	// allocate structure that will receive MIDI events
-	clock_event = calloc (1, sizeof (jack_midi_event_t));
-	in_event = calloc (1, sizeof (jack_midi_event_t));
+	//clock_event = calloc (1, sizeof (jack_midi_event_t));
+	//in_event = calloc (1, sizeof (jack_midi_event_t));
 
 	// Get midi clock midi out and midi in buffers
 	midiclock = jack_port_get_buffer(midi_clock_port, nframes);
@@ -60,22 +62,22 @@ int process ( jack_nframes_t nframes, void *arg )
 
 	// process MIDI IN events
 	for (i=0; i< jack_midi_get_event_count(midiin); i++) {
-		if (jack_midi_event_get (in_event, midiin, i) != 0) {
+		if (jack_midi_event_get (&in_event, midiin, i) != 0) {
 			fprintf ( stderr, "Missed in event\n" );
 			continue;
 		}
 		// call processing function
-		midi_in_process (in_event,nframes);
+		midi_in_process (&in_event,nframes);
 	}
 
 	// process MIDI CLOCK events
 	for (i=0; i< jack_midi_get_event_count(midiclock); i++) {
-		if (jack_midi_event_get (clock_event, midiclock, i) != 0) {
+		if (jack_midi_event_get (&clock_event, midiclock, i) != 0) {
 			fprintf ( stderr, "Missed clock event\n" );
 			continue;
 		}
 		// call processing function
-		midi_clock_process (clock_event,nframes);
+		midi_clock_process (&clock_event,nframes);
 	}
 
 
@@ -277,6 +279,20 @@ int midi_in_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 	if (same_event(event->buffer,track[0].ctrl[TIMESIGN])) {
 		change_timesign ();
 		// no need to switch any pad led on: as we are forcing new bar, next clock event will be a new bar, which will lit the timesign pad on
+	}
+
+	// check if load pad has been pressed
+	if (same_event(event->buffer,track[0].ctrl[LOAD])) {
+		is_load=TRUE;
+		// load led on
+		led (0, LOAD, ON);
+	}
+
+	// check if save pad has been pressed
+	if (same_event(event->buffer,track[0].ctrl[SAVE])) {
+		is_save=TRUE;
+		// save led on
+		led (0, SAVE, ON);
 	}
 
 	// check all the tracks to see if MIDI in event (ie. UI event) corresponds to one of the track

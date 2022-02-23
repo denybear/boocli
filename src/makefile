@@ -3,10 +3,10 @@
 #Change output_file_name.a below to your desired executible filename
 
 #Set all your object files (the object files of all the .c files in your project, e.g. main.o my_sub_functions.o )
-OBJ = main.o config.o process.o led.o time.o utils.o
+OBJ = main.o config.o process.o led.o time.o utils.o disk.o
 
 #Set any dependant header files so that if they are edited they cause a complete re-compile (e.g. main.h some_subfunctions.h some_definitions_file.h ), or leave blank
-DEPS = jack/jack.h jack/midiport.h libconfig.h types.h main.h config.h process.h led.h time.h utils.h globals.h
+DEPS = jack/jack.h jack/midiport.h libconfig.h types.h main.h config.h process.h led.h time.h utils.h disk.h globals.h
 
 #Any special libraries you are using in your project (e.g. -lbcm2835 -lrt `pkg-config --libs gtk+-3.0` ), or leave blank
 #LIBS = -L/usr/lib/i386-linux-gnu -ljack

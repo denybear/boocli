@@ -11,6 +11,7 @@
 #include "led.h"
 #include "time.h"
 #include "utils.h"
+#include "disk.h"
 
 // For testing purpose only
 //#include <math.h>
@@ -60,6 +61,10 @@ static void init_globals ( )
 	for (i = 0; i<NB_BAR_ROWS; i++) {
 		memset (&bar[i], 0, sizeof (bar_t));
 	}
+
+	/* clear load/save flags */
+	is_load = FALSE;
+	is_save = FALSE;
 
 }
 
@@ -314,6 +319,39 @@ int main ( int argc, char *argv[] )
 
 	while (1)
 	{
+		// load pad has been pressed
+		if (is_load) {
+
+			load ();
+			is_load = FALSE;
+
+			// reset status of all the tracks, to have a fresh start
+			for (i = 0; i < NB_TRACKS; i++) {
+
+				// reset track status
+				reset_status (&track[i]);
+				// reset volume to max
+				track[i].volume = 1.0f;
+				// switch all leds off for the track
+				led_off (i);
+				// track volume set to 1.0 by default
+				led (i, VOLUP, ON);
+
+			}
+
+			// load led off
+			led (0, LOAD, OFF);
+		}
+
+		// save pad has been pressed
+		if (is_save) {
+
+			save ();
+			is_save = FALSE;
+
+			// save led off
+			led (0, SAVE, OFF);
+		}
 
 #ifdef WIN32
 		Sleep ( 1000 );

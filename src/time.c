@@ -11,6 +11,7 @@
 #include "led.h"
 #include "time.h"
 #include "utils.h"
+#include "disk.h"
 
 
 // function called in case user pressed the time_signature pad

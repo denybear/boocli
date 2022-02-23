@@ -46,3 +46,8 @@ extern int timesign;					// the value of this variable indicates which is the cu
 extern track_t track [];
 /* define bar row structure */
 extern bar_t bar [];
+
+/* load & save globals */
+extern int is_load;
+extern int is_save;
+

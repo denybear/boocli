@@ -12,6 +12,8 @@
 #include "process.h"
 #include "led.h"
 #include "time.h"
+#include "utils.h"
+#include "disk.h"
 
 
 /* This example reads the configuration file 'example.cfg' and displays
@@ -199,6 +201,22 @@ int read_config (char *name)
 			track[i].ctrl[TIMESIGN][0] = config_setting_get_int_elem (buffer, 0);
 			track[i].ctrl[TIMESIGN][1] = config_setting_get_int_elem (buffer, 1);
 
+			/* load */
+			buffer = config_setting_get_member (book, "load");
+			/* check buffer is not empty, and has 2 elements */
+			if (!buffer) continue;
+			if (config_setting_length(buffer)!=2) continue;
+			track[i].ctrl[LOAD][0] = config_setting_get_int_elem (buffer, 0);
+			track[i].ctrl[LOAD][1] = config_setting_get_int_elem (buffer, 1);
+
+			/* save */
+			buffer = config_setting_get_member (book, "save");
+			/* check buffer is not empty, and has 2 elements */
+			if (!buffer) continue;
+			if (config_setting_length(buffer)!=2) continue;
+			track[i].ctrl[SAVE][0] = config_setting_get_int_elem (buffer, 0);
+			track[i].ctrl[SAVE][1] = config_setting_get_int_elem (buffer, 1);
+
 			/* play */
 			buffer = config_setting_get_member (book, "play");
 			/* check buffer is not empty, and has 2 elements */
@@ -288,6 +306,24 @@ int read_config (char *name)
 			track[i].led[TIMESIGN][ON][0] = config_setting_get_int_elem (buffer, 0);
 			track[i].led[TIMESIGN][ON][1] = config_setting_get_int_elem (buffer, 1);
 			track[i].led[TIMESIGN][ON][2] = config_setting_get_int_elem (buffer, 2);
+
+			/* load */
+			buffer = config_setting_get_member (book, "load");
+			/* check buffer is not empty, and has 3 elements */
+			if (!buffer) continue;
+			if (config_setting_length(buffer)!=3) continue;
+			track[i].led[LOAD][ON][0] = config_setting_get_int_elem (buffer, 0);
+			track[i].led[LOAD][ON][1] = config_setting_get_int_elem (buffer, 1);
+			track[i].led[LOAD][ON][2] = config_setting_get_int_elem (buffer, 2);
+
+			/* save */
+			buffer = config_setting_get_member (book, "save");
+			/* check buffer is not empty, and has 3 elements */
+			if (!buffer) continue;
+			if (config_setting_length(buffer)!=3) continue;
+			track[i].led[SAVE][ON][0] = config_setting_get_int_elem (buffer, 0);
+			track[i].led[SAVE][ON][1] = config_setting_get_int_elem (buffer, 1);
+			track[i].led[SAVE][ON][2] = config_setting_get_int_elem (buffer, 2);
 
 			/* play */
 			buffer = config_setting_get_member (book, "play");
@@ -528,6 +564,24 @@ int read_config (char *name)
 			track[i].led[TIMESIGN][OFF][0] = config_setting_get_int_elem (buffer, 0);
 			track[i].led[TIMESIGN][OFF][1] = config_setting_get_int_elem (buffer, 1);
 			track[i].led[TIMESIGN][OFF][2] = config_setting_get_int_elem (buffer, 2);
+
+			/* load */
+			buffer = config_setting_get_member (book, "load");
+			/* check buffer is not empty, and has 3 elements */
+			if (!buffer) continue;
+			if (config_setting_length(buffer)!=3) continue;
+			track[i].led[LOAD][OFF][0] = config_setting_get_int_elem (buffer, 0);
+			track[i].led[LOAD][OFF][1] = config_setting_get_int_elem (buffer, 1);
+			track[i].led[LOAD][OFF][2] = config_setting_get_int_elem (buffer, 2);
+
+			/* save */
+			buffer = config_setting_get_member (book, "save");
+			/* check buffer is not empty, and has 3 elements */
+			if (!buffer) continue;
+			if (config_setting_length(buffer)!=3) continue;
+			track[i].led[SAVE][OFF][0] = config_setting_get_int_elem (buffer, 0);
+			track[i].led[SAVE][OFF][1] = config_setting_get_int_elem (buffer, 1);
+			track[i].led[SAVE][OFF][2] = config_setting_get_int_elem (buffer, 2);
 
 			/* play */
 			buffer = config_setting_get_member (book, "play");

@@ -12,6 +12,7 @@
 #include "led.h"
 #include "time.h"
 #include "utils.h"
+#include "disk.h"
 
 
 // add led request to the list of requests to be processed

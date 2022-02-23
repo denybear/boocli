@@ -49,3 +49,8 @@ track_t track [NB_TRACKS];
 /* define bar row structure */
 bar_t bar [NB_BAR_ROWS];
 
+/* load & save globals */
+int is_load;
+int is_save;
+
+
