@@ -86,6 +86,7 @@ void jack_shutdown ( void *arg )
 	free ( input_ports );
 	free ( output_ports );
 	free (midi_input_port);
+	free (midi_output_port);
 	free (midi_clock_port);
 	exit ( 1 );
 }
