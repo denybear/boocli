@@ -99,7 +99,7 @@ int read_config (char *name)
 	}
 
 	/* midi clock inputs */
-	setting = config_lookup(&cfg, "connections.midi_clock");
+	setting = config_lookup(&cfg, "connections.clock_input");
 	if(setting != NULL)
 	{
 		int count = config_setting_length(setting);
@@ -174,9 +174,6 @@ int read_config (char *name)
 	/*****************************************************************************************************/
 	/* Read control settings : assign midi events to control each function of the looper, for each track */
 	/*****************************************************************************************************/
-
-	index = 0;
-
 
 	/* control inputs */
 	setting = config_lookup(&cfg, "controls.tracks");
@@ -660,9 +657,6 @@ int read_config (char *name)
 	/***********************************************************************************/
 	/* Read bar settings : assign midi events to control number of bars to be recorded */
 	/***********************************************************************************/
-
-	index = 0;
-
 
 	/* control inputs */
 	setting = config_lookup(&cfg, "bars.rows");

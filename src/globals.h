@@ -10,7 +10,7 @@ extern jack_port_t **input_ports;
 extern jack_port_t **output_ports;
 extern jack_port_t *midi_input_port;
 extern jack_port_t *midi_output_port;
-extern jack_port_t *midi_clock_port;
+extern jack_port_t *clock_input_port;
 extern char **ports_to_connect;
 
 /* define JACKD client : this is this program */

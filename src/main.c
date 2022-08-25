@@ -87,7 +87,7 @@ void jack_shutdown ( void *arg )
 	free ( output_ports );
 	free (midi_input_port);
 	free (midi_output_port);
-	free (midi_clock_port);
+	free (clock_input_port);
 	exit ( 1 );
 }
 
@@ -180,9 +180,9 @@ int main ( int argc, char *argv[] )
 		exit ( 1 );
 	}
 
-	/* register midi-clock port: this port will get the midi clock notification */
-	midi_clock_port = jack_port_register (client, "midi_clock_1", JACK_DEFAULT_MIDI_TYPE, JackPortIsInput, 0);
-	if (midi_clock_port == NULL ) {
+	/* register clock-input port: this port will get the midi clock notification */
+	clock_input_port = jack_port_register (client, "clock_input_1", JACK_DEFAULT_MIDI_TYPE, JackPortIsInput, 0);
+	if (clock_input_port == NULL ) {
 		fprintf ( stderr, "no more JACK MIDI ports available.\n" );
 		exit ( 1 );
 	}

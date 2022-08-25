@@ -21,9 +21,10 @@
 
 
 /* constants */
-#define NB_TRACKS	6	// number of tracks for the looper
+#define NB_TRACKS	4	// number of tracks for the looper
 #define NB_BAR_ROWS 2	// number of bar rows to select tehe number of bars to record
 #define MIDI_CLOCK 0xF8
+#define MIDI_RESERVED 0xF9
 #define MIDI_PLAY 0xFA
 #define MIDI_STOP 0xFC
 #define MIDI_CLOCK_RATE 96 // 24*4 ticks for full note, 24 ticks per quarter note
@@ -47,6 +48,7 @@
 
 /* max number of samples of each track buffer (L,R) */
 #define NB_SAMPLES	13230000	// 13230000 samples at 44100 Hz means 300 seconds of music, ie. 5 min loops
+								// 13230000 samples at 48000 Hz means 275 seconds of music, ie. 4.5 min loops
 
 /* time signature values */
 #define FIRST_TIMESIGN 0

@@ -23,7 +23,7 @@ int process ( jack_nframes_t nframes, void *arg )
 	int i,j,k;
 	int mute = OFF;
 	void *midiin;
-	void *midiclock;
+	void *clockin;
 	void *midiout;
 	jack_nframes_t nframes_half;			// anti-crack variables
 	jack_default_audio_sample_t sample;		// anti-crack variables
@@ -57,7 +57,7 @@ int process ( jack_nframes_t nframes, void *arg )
 	//in_event = calloc (1, sizeof (jack_midi_event_t));
 
 	// Get midi clock midi out and midi in buffers
-	midiclock = jack_port_get_buffer(midi_clock_port, nframes);
+	clockin = jack_port_get_buffer(clock_input_port, nframes);
 	midiin = jack_port_get_buffer(midi_input_port, nframes);
 
 	// process MIDI IN events
@@ -71,8 +71,8 @@ int process ( jack_nframes_t nframes, void *arg )
 	}
 
 	// process MIDI CLOCK events
-	for (i=0; i< jack_midi_get_event_count(midiclock); i++) {
-		if (jack_midi_event_get (&clock_event, midiclock, i) != 0) {
+	for (i=0; i< jack_midi_get_event_count(clockin); i++) {
+		if (jack_midi_event_get (&clock_event, clockin, i) != 0) {
 			fprintf ( stderr, "Missed clock event\n" );
 			continue;
 		}
