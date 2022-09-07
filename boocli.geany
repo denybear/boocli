@@ -27,13 +27,13 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=18
+current_page=2
 FILE_NAME_0=3154;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fconfig.c;0;4
 FILE_NAME_1=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fconfig.h;0;4
 FILE_NAME_2=326;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fglobals.h;0;4
 FILE_NAME_3=258;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fled.c;0;4
 FILE_NAME_4=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fled.h;0;4
-FILE_NAME_5=2342;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fmain.c;0;4
+FILE_NAME_5=7368;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fmain.c;0;4
 FILE_NAME_6=318;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fmain.h;0;4
 FILE_NAME_7=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fprocess.h;0;4
 FILE_NAME_8=231;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Ftime.c;0;4
@@ -48,7 +48,7 @@ FILE_NAME_16=83;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fdisk.
 FILE_NAME_17=2210;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fsrc%2Fprocess.c;0;4
 FILE_NAME_18=614;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fcfg%2Fboocli.boocliUI.cfg;0;4
 FILE_NAME_19=601;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fcfg%2Fboocli.launchpadmini.cfg;0;4
-FILE_NAME_20=726;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fcfg%2Fboocli.synthi.cfg;0;4
+FILE_NAME_20=607;Conf;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojets%2Fboocli%2Fcfg%2Fboocli.synthi.cfg;0;4
 
 [VTE]
 last_dir=/home/pi
