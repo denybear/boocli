@@ -244,7 +244,7 @@ int main ( int argc, char *argv[] )
 		fprintf (stderr, "server: %s , client: %s\n", ports_to_connect[i], ports_to_connect[i+1]);
 		if ( jack_connect ( client, ports_to_connect [i], ports_to_connect [i+1]) ) {
 			fprintf ( stderr, "cannot connect ports (between client and server).\n" );
-			exit (1);
+//			exit (1);
 		}
 		/* increment index of 2 position to move to next (server, client) port couple */
 		i+=2;
