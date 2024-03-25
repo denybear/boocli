@@ -442,6 +442,14 @@ int midi_in_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 int midi_clock_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 
 	int i;
+	// matriboxstop is the same string, but last 0x01 of the string is replaced with 0x00
+	unsigned char matribox_play [28] = {0x21, 0x25, 0x7e, 0x47, 0x50, 0x2d, 0x32, 0x12, 0x08, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00};
+
+	// special case of Matribox II: MIDI_PLAY is sent as sysex event (!!!)
+	// in which case we force the value to midi play
+	if (event->buffer[0] == MIDI_SYSEX) {
+		if (memcmp (&(event->buffer[1]), matribox_play, 28) == 0) event->buffer [0] = MIDI_PLAY;
+	}
 
 	// in case of midi play event, then next CLOCK event is a new bar
 	if (event->buffer[0] == MIDI_PLAY) {

@@ -23,11 +23,13 @@
 /* constants */
 #define NB_TRACKS	4	// number of tracks for the looper
 #define NB_BAR_ROWS 2	// number of bar rows to select tehe number of bars to record
+#define MIDI_SYSEX	0xF0
 #define MIDI_CLOCK 0xF8
 #define MIDI_RESERVED 0xF9
 #define MIDI_PLAY 0xFA
 #define MIDI_STOP 0xFC
-#define MIDI_CLOCK_RATE 96 // 24*4 ticks for full note, 24 ticks per quarter note
+#define MIDI_CLOCK_RATE 99 // 24*4 ticks for full note, 24 ticks per quarter note
+//#define MIDI_CLOCK_RATE 96 // 24*4 ticks for full note, 24 ticks per quarter note
 
 #define FIRST_ELT 0		// used for declarations and loops
 #define TIMESIGN 0
