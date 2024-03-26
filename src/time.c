@@ -70,12 +70,13 @@ int change_timesign () {
 // returns led to be lit (ON, OFF, PENDING_ON...)
 int time_progress () {
 
+float BBT_beat_value;
 int ret = OFF;
 
 	// process the delay of 4 ticks in the switching on/off of the pad led... this is to make sure hardware can follow the pace
 	// remove this if/else chunk to remove this functionality
 	// and remove BBT_wait_4_ticks variable
-/*	if (--BBT_wait_4_ticks <= 0) ret = OFF;
+	if (--BBT_wait_4_ticks <= 0) ret = OFF;
 	else {
 		if (BBT_wait_4_ticks <=3) ret = PENDING_ON;				// new beat only, then light PENDING_ON
 		else {
@@ -83,7 +84,7 @@ int ret = OFF;
 			if (BBT_wait_4_ticks == 4) BBT_wait_4_ticks = 0;
 		}
 	}
-*/
+
 
 	// check if we should have a new bar (because this is program's start, or play event or sign time change has occured right before
 	if (is_BBT == PENDING_ON) {
@@ -101,20 +102,7 @@ int ret = OFF;
 	// compute tick value
 	BBT_tick++;
 	// compute beat value
-	BBT_beat_value = MIDI_CLOCK_RATE / BBT_denominator;
-
-
-if (BBT_tick <= (MIDI_CLOCK_RATE / 4)) BBT_beat = 1;
-else {
-	if (BBT_tick <= (MIDI_CLOCK_RATE / 2)) BBT_beat = 2;
-	else {
-		if (BBT_tick <= ((MIDI_CLOCK_RATE*3) / 4)) BBT_beat = 3;
-		else {
-			if (BBT_tick <= (MIDI_CLOCK_RATE)) BBT_beat = 4;
-			else BBT_beat = 5;
-		}
-	}
-}
+	BBT_beat_value = (float) ppbar / (float) BBT_denominator;		// float value
 
 
 	// compute beat based on numerator time signature
@@ -125,7 +113,7 @@ else {
 		case 4:
 		case 5:
 			// simple time signature
-//			BBT_beat = ((BBT_tick-1) / BBT_beat_value)+1;
+			BBT_beat = (int) (((BBT_tick-1) / BBT_beat_value))+1;
 
 			// check if we changed beat
 			if (BBT_beat != BBT_previous_beat) {
@@ -143,14 +131,14 @@ else {
 				BBT_wait_4_ticks = 8;		// purpose of this is to delay switch on/off of led of about 4 clock ticks, so hardware can support it
 				is_BBT = ON;		// indicates we have a new bar
 				ret = ON;			// return value which could be used to set leds
-//printf ("BAR %d\n", BBT_bar);
+printf ("BAR %d\n", BBT_bar);
 			}
 			break;
 		case 6:
 		case 9:
 		case 12:
 			/* compound time signature */
-			BBT_beat = ((BBT_tick-1) / (BBT_beat_value*3))+1;
+			BBT_beat = (int) ((BBT_tick-1) / (BBT_beat_value*3))+1;
 
 			/* check if we changed beat */
 			if (BBT_beat != BBT_previous_beat) {

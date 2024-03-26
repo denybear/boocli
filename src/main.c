@@ -29,6 +29,8 @@ static void init_globals ( )
 	/* INIT SOME GLOBAL VARIABLES */
 	/******************************/
 
+	/* pulse per BAR is set to standard value, ie. 4 * 24 = 96 pulse per bar */
+	ppbar = MIDI_CLOCK_RATE;
 	/* time signature is 0, ie. 4/4 by default */
 	timesign = _4_4;
 	/* number of bars to be recorded (if any specified) */

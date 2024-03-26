@@ -33,7 +33,6 @@ extern int BBT_numerator;
 extern int BBT_denominator;
 extern unsigned int BBT_bar;
 extern int BBT_beat;
-extern int BBT_beat_value;
 extern int BBT_previous_beat;
 extern int BBT_tick;
 extern int BBT_wait_4_ticks;
@@ -50,4 +49,7 @@ extern bar_t bar [];
 /* load & save globals */
 extern int is_load;
 extern int is_save;
+
+/* PPBAR can vary from 96 to 99, depending on the attached midi clock device */
+extern float ppbar;
 

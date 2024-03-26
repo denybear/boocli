@@ -28,8 +28,8 @@
 #define MIDI_RESERVED 0xF9
 #define MIDI_PLAY 0xFA
 #define MIDI_STOP 0xFC
-#define MIDI_CLOCK_RATE 99 // 24*4 ticks for full note, 24 ticks per quarter note
-//#define MIDI_CLOCK_RATE 96 // 24*4 ticks for full note, 24 ticks per quarter note
+#define MIDI_CLOCK_RATE_MATRIBOX 99.0	// Matribox II is not standard
+#define MIDI_CLOCK_RATE 96.0 			// 24*4 ticks for full note, 24 ticks per quarter note
 
 #define FIRST_ELT 0		// used for declarations and loops
 #define TIMESIGN 0

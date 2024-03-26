@@ -36,7 +36,6 @@ int BBT_numerator=4;        // 4/4 bar time signature at start
 int BBT_denominator=4;
 unsigned int BBT_bar=1;		// set bar number as 1
 int BBT_beat;
-int BBT_beat_value;
 int	BBT_previous_beat;
 int BBT_tick;
 int BBT_wait_4_ticks = 8;		// purpose of this is to delay switch on/off of led of about 4 clock ticks, so hardware can support it
@@ -53,4 +52,6 @@ bar_t bar [NB_BAR_ROWS];
 int is_load;
 int is_save;
 
+/* PPBAR can vary from 96 to 99, depending on the attached midi clock device */
+float ppbar;
 

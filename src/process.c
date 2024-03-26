@@ -448,7 +448,10 @@ int midi_clock_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 	// special case of Matribox II: MIDI_PLAY is sent as sysex event (!!!)
 	// in which case we force the value to midi play
 	if (event->buffer[0] == MIDI_SYSEX) {
-		if (memcmp (&(event->buffer[1]), matribox_play, 28) == 0) event->buffer [0] = MIDI_PLAY;
+		if (memcmp (&(event->buffer[1]), matribox_play, 28) == 0) {
+			event->buffer [0] = MIDI_PLAY;
+			ppbar = MIDI_CLOCK_RATE_MATRIBOX;
+		}
 	}
 
 	// in case of midi play event, then next CLOCK event is a new bar
