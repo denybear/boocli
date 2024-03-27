@@ -131,7 +131,6 @@ int ret = OFF;
 				BBT_wait_4_ticks = 8;		// purpose of this is to delay switch on/off of led of about 4 clock ticks, so hardware can support it
 				is_BBT = ON;		// indicates we have a new bar
 				ret = ON;			// return value which could be used to set leds
-printf ("BAR %d\n", BBT_bar);
 			}
 			break;
 		case 6:
