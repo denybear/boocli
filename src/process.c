@@ -450,7 +450,7 @@ int midi_clock_process (jack_midi_event_t *event, jack_nframes_t nframes) {
 	if (event->buffer[0] == MIDI_SYSEX) {
 		if (memcmp (&(event->buffer[1]), matribox_play, 28) == 0) {
 			event->buffer [0] = MIDI_PLAY;
-			ppbar = MIDI_CLOCK_RATE_MATRIBOX;
+			//ppbar = MIDI_CLOCK_RATE_MATRIBOX;
 		}
 	}
 

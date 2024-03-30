@@ -29,8 +29,6 @@ static void init_globals ( )
 	/* INIT SOME GLOBAL VARIABLES */
 	/******************************/
 
-	/* pulse per BAR is set to standard value, ie. 4 * 24 = 96 pulse per bar */
-	ppbar = MIDI_CLOCK_RATE;
 	/* time signature is 0, ie. 4/4 by default */
 	timesign = _4_4;
 	/* number of bars to be recorded (if any specified) */
@@ -114,17 +112,24 @@ int main ( int argc, char *argv[] )
 	config_name = calloc (20, sizeof(char));
 	strcpy (config_name, "./boocli.cfg");
 
+	/* pulse per BAR is set to standard value, ie. 4 * 24 = 96 pulse per bar */
+	ppbar = MIDI_CLOCK_RATE;
+	// PP per bar
 	if ( argc >=2 ) {
-		free (config_name);
-		config_name = argv [1];	// config file name specified
+		ppbar = atof (argv [1]);
 	}
 
-	if ( argc >= 3 )        /* client name specified? */
+	if ( argc >=3 ) {
+		free (config_name);
+		config_name = argv [2];	// config file name specified
+	}
+
+	if ( argc >= 4 )        /* client name specified? */
 	{
-		client_name = argv[2];
-		if ( argc >= 4 )    /* server name specified? */
+		client_name = argv[3];
+		if ( argc >= 5 )    /* server name specified? */
 		{
-			server_name = argv[3];
+			server_name = argv[4];
 			options |= JackServerName;
 		}
 	}
